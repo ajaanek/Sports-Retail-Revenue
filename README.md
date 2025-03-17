@@ -29,19 +29,55 @@ The analysis uses the Optimizing Online Sports Retail Revenue Dataset from [Kagg
 - **Traffic** – Contains timestamps (last_visited) or other engagement metrics.
 
 ## Project Workflow
-**Data Cleaning & Querying with SQL**:
-- 
+**SQL Data Cleaning & Transformation**:
+- Joined all tables
+- Removed duplicates using a ROW_NUMBER() approach.
+- Standardized casing for brand, product names (Men's, Women's), and columns for decimal precision.
+- Filtered out null rows or incomplete entries
 - Converted data into proper types (e.g., dates and numbers).
-- Handled missing values and normalized product details.
-- Created additional fields (e.g., quarters and sales periods) to facilitate analysis.
+- Created additional fields (e.g., gender) to facilitate analysis.
 
-**Data Visualization with Tableau**:
+**Initial Exploratory Analysis**
+- Percentile Calculations (PERCENTILE_CONT) for price points.
+- Correlation Coefficient procedure CalculateCorrelation to find relationships (e.g., revenue vs. reviews).
+- Gender Column to classify products as Men’s, Women’s, or Uncategorized.
+- Identifying Footwear items to compare footwear vs. clothing median revenue.
 
-After preprocessing the data in Python, I exported the cleaned dataset and built 2 interactive Tableau dashboards. These dashboards include:
-- Sales Volume vs. Unit Price: To analyze product pricing and stocking strategies.
-- Pareto Analysis for Items & Customers: To identify which products and customers contribute the most to revenue.
-- Regional sales distribution and quarterly comparisons (including year-over-year insights).
-- Customer segmentation analysis based on recency, frequency, and average spend.
+
+**Key Insights & Analysis in SQL**
+Brand Comparison:
+- Nike’s price tiers are significantly higher than Adidas’, yet the distribution across low/medium/high tiers is similar, suggesting different brand positioning but a similar product mix strategy.
+- Nike’s price points are 200–260% higher than Adidas’ for each percentile tier.
+Footwear vs. Clothing:
+- 82.6% of the company’s products are footwear.
+- Footwear median revenue is significantly higher than clothing.
+Revenues vs. Reviews:
+- Correlation between revenue and reviews is ~0.65 (moderately strong).
+Gender vs. Revenue:
+- Men’s footwear yields higher total revenue, but women’s footwear has a higher average revenue per product.
+Discount Effectiveness:
+- Many products have negative (sale_price - listing_price), indicating frequent discount usage.
+- Some negative margins exist even without an explicit discount, possibly due to data entry or return policies.
+Description Length vs. Reviews/Rating:
+- The correlation is near zero, implying description length does not significantly impact ratings or reviews.
+
+
+**Data Visualization with PowerBI**:
+
+After preprocessing the data in SQL, I exported the cleaned dataset and built 2 interactive PowerBI dashboards. These dashboards include:
+
+1. Overall Sales & Revenue Analysis
+- KPIs: Average Revenue per Product, Average Rating, Total Number of Products.
+- Charts:
+  - Relationship Between Discount & Revenue
+  - Total Revenue by Year
+  - Bubble Chart for rating vs. reviews (size = revenue).
+  - Gender Distribution & Revenue by Gender
+2. Brand Comparison Dashboard
+- Brand Performance (Revenue vs. % of Products)
+- Average Rating by Brand
+- Discount Percentage by Brand
+- Revenue by Product and Brand
 
   
 ## Key Insights
@@ -58,8 +94,8 @@ Seasonal analysis helped identify peak sales periods, which can guide inventory 
 By segmenting customers based on their purchase frequency, recency, and average spend, the project highlights opportunities for targeted marketing and personalized customer retention strategies.
 
 ## Technical Skills Demonstrated
-- **Data Cleaning & Transformation**: Efficiently managed and preprocessed data in Python.
-- **Tableau**: Built dynamic dashboards with interactive visualizations, including bar charts, scatter plots, and Pareto analyses.
+- **Data Cleaning & Transformation**: Efficiently managed and preprocessed data in SQL.
+- **PowerBI**: Built dynamic dashboards with interactive visualizations, including bar charts, scatter plots, and bubble charts.
 - **Analytical Thinking**: Derived actionable insights from the data, providing a comprehensive view of sales performance and customer behavior.
 
 ## Conclusion
