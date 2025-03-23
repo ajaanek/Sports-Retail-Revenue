@@ -52,9 +52,9 @@ description = TRIM(description);
 
 -- Some of the rows have the gender in proper case, some in all caps, and some are a mix. 
 -- To be able to segment the clothes/footwear by gender easily, I will fix this
-SELECT *
+SELECT product_id, product_name, brand
 FROM combined_staging
-WHERE product_name LIKE '%men''s';
+WHERE product_name LIKE '%men''s%';
 
 -- Ensuring the "Men's" or "Women's" part of the product name is in same format (first letter capitalized + rest not capitalized) 
 UPDATE combined_staging
@@ -66,7 +66,7 @@ SET product_name = REPLACE(product_name COLLATE Latin1_General_CI_AS, 'men''s', 
 WHERE product_name COLLATE Latin1_General_CI_AS LIKE 'men''s%';
 
 -- Ensuring there aren't any typos in the 2 brands we expect (Adidas & Nike)
-SELECT COUNT(DISTINCT brand)
+SELECT COUNT(DISTINCT brand) as Num_of_brands
 FROM combined_staging;
 
 -- listing_price, sale_price, discount, and revenue are currency so they should be Decimals 
@@ -81,6 +81,9 @@ ALTER COLUMN discount DECIMAL(10, 2);
 
 ALTER TABLE combined_staging
 ALTER COLUMN revenue DECIMAL(10, 2);
+
+SELECT TOP 20 product_id, product_name, brand, rating, reviews
+FROM combined_staging;
 
 -- Want rating to have 1 decimal place
 ALTER TABLE combined_staging
@@ -103,7 +106,7 @@ FROM combined_staging;
 -- INITIAL EXPLORATORY ANALYSIS
 
 -- There are rows with one of rating or review is 0 but the other is not. Typically both are required when leaving a review
-SELECT * 
+SELECT TOP 20 product_id, product_name, brand, revenue, rating, reviews, last_visited
 FROM combined_staging 
 WHERE ((rating = 0 AND reviews != 0) or (reviews = 0 and rating != 0));
 
@@ -125,11 +128,15 @@ SELECT
     brand,
     sale_price,
     PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY sale_price) OVER (PARTITION BY brand) AS low,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY sale_price) OVER (PARTITION BY brand) AS median,
+    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY sale_price) OVER (PARTITION BY brand) AS medium,
     PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY sale_price) OVER (PARTITION BY brand) AS high
 INTO #price_points
 FROM combined_staging
 WHERE brand IN ('Nike', 'Adidas');
+
+SELECT * 
+FROM #price_points
+ORDER BY sale_price;
 
 -- Step 2: Compare price points between Nike and Adidas
 SELECT 
@@ -141,9 +148,9 @@ FROM #price_points
 UNION ALL
 
 SELECT 
-    'Median' AS tier,
-    MAX(CASE WHEN brand = 'Nike' THEN median END) AS Nike,
-    MAX(CASE WHEN brand = 'Adidas' THEN median END) AS Adidas
+    'Medium' AS tier,
+    MAX(CASE WHEN brand = 'Nike' THEN medium END) AS Nike,
+    MAX(CASE WHEN brand = 'Adidas' THEN medium END) AS Adidas
 FROM #price_points
 
 UNION ALL
@@ -168,12 +175,12 @@ FROM #price_points
 UNION ALL
 
 SELECT 
-    'Median' AS tier,
-    '$' + FORMAT(ABS(MAX(CASE WHEN brand = 'Nike' THEN median END) 
-             - MAX(CASE WHEN brand = 'Adidas' THEN median END)), 'N2') AS abs_difference,
+    'Medium' AS tier,
+    '$' + FORMAT(ABS(MAX(CASE WHEN brand = 'Nike' THEN medium END) 
+             - MAX(CASE WHEN brand = 'Adidas' THEN medium END)), 'N2') AS abs_difference,
     FORMAT(
-        CAST(MAX(CASE WHEN brand = 'Nike' THEN median END) AS FLOAT) 
-        / MAX(CASE WHEN brand = 'Adidas' THEN median END) * 100, 'N2'
+        CAST(MAX(CASE WHEN brand = 'Nike' THEN medium END) AS FLOAT) 
+        / MAX(CASE WHEN brand = 'Adidas' THEN medium END) * 100, 'N2'
     ) + '%' AS prop_difference
 FROM #price_points
 
@@ -197,8 +204,8 @@ WITH tier_counts AS (
     SELECT 
         brand,
         COUNT(CASE WHEN sale_price <= low THEN 1 END) AS low_count,
-        COUNT(CASE WHEN sale_price > low AND sale_price <= median THEN 1 END) AS medium_count,
-        COUNT(CASE WHEN sale_price > median AND sale_price <= high THEN 1 END) AS high_count,
+        COUNT(CASE WHEN sale_price > low AND sale_price <= medium THEN 1 END) AS medium_count,
+        COUNT(CASE WHEN sale_price > medium AND sale_price <= high THEN 1 END) AS high_count,
         COUNT(CASE WHEN sale_price > high THEN 1 END) AS very_high_count,
         COUNT(*) AS total_count
     FROM #price_points
@@ -223,6 +230,7 @@ FROM tier_counts;
 -- Is there a difference in the amount of discount offered between the brands?
 SELECT brand, FORMAT(AVG(discount)*100, 'N2') + '%' AS discount_avg
 FROM combined_staging
+WHERE brand IS NOT NULL
 GROUP BY brand;
 
 -- It seems Nike doesn't offer any discounts
@@ -265,6 +273,9 @@ GO
 
 EXEC dbo.CalculateCorrelation @x_column = 'revenue', @y_column = 'reviews';
 -- A correlation value of 0.65 suggests a moderately strong relationship  
+
+-- Is there any correlation between revenue and ratings? And if so, how strong is it?
+EXEC dbo.CalculateCorrelation @x_column = 'revenue', @y_column = 'rating';
 
 -- Do Mens or Womens shoe contribute the most to revenue?
 ALTER TABLE combined_staging 
