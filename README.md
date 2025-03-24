@@ -81,17 +81,11 @@ After preprocessing the data in SQL, I exported the cleaned dataset and built 2 
 
   
 ## Key Insights
-**Product Insights**:
-The analysis revealed that the top 20 products by sales volume are not the same as the top 20 by revenue. This suggests that products with high sales frequency tend to be lower-priced, everyday items, while higher-priced, premium items-though sold less frequently-drive a significant portion of the revenue.
+- Improve Nike's product-to-revenue efficiency through targeted marketing and quality adjustments.
+- Optimize Adidas’ product line by phasing out underperforming SKUs and increasing margins on best-sellers.
+- Expand high-margin women’s products and refine product categorization.
+- Leverage customer reviews to drive product improvements and boost customer confidence.
 
-**Regional Performance**:
-A significant concentration of sales is observed in the UK, highlighting an opportunity to either expand in other regions or further optimize operations within the UK.
-
-**Seasonal Trends**:
-Seasonal analysis helped identify peak sales periods, which can guide inventory planning and targeted promotions.
-
-**Customer Segmentation**:
-By segmenting customers based on their purchase frequency, recency, and average spend, the project highlights opportunities for targeted marketing and personalized customer retention strategies.
 
 ## Technical Skills Demonstrated
 - **Data Cleaning & Transformation**: Efficiently managed and preprocessed data in SQL.
