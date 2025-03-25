@@ -3,7 +3,7 @@
 Welcome to my repository for the Optimizing Online Sports Retail Revenue  project. This project demonstrates how to combine multiple data sources (Brands, Finance, Product Info, Reviews, and Traffic) into a unified dataset, perform data cleaning and exploratory analysis in SQL, and build interactive dashboards in PowerBI to derive business insights. The project uses a dataset from Kaggle, which contains data scraped from an online sports retail store like product name, description, brand, listing price, sale price, rating, and number of reviews.
 
 ## How to Use This Repository
-- [**Github Pages**](https://ajaanek.github.io/Online-Retail-Sales-Analysis/): The complete project - including both the Kaggle Notebook and the interactive PowerBI Dashboards, is available in the deployed Github Page
+- [**Github Pages**](https://ajaanek.github.io/Sports-Retail-Revenue/): The complete project - including both the Kaggle Notebook and the interactive PowerBI Dashboards, is available in the deployed Github Page
 - [**Kaggle Notebook**](https://www.kaggle.com/code/ajaanekanagasabai/sports-retail): Explore the complete data analysis and Python code in the Kaggle Notebook (ipynb also file provided in the repository).
 - [**PowerBI**](https://app.powerbi.com/view?r=eyJrIjoiYTkzN2U3ZWItNmM2Yi00ZjVhLTg4YWEtZTNiMDEzODg3YWY1IiwidCI6IjY0ZDEyMDc0LTcyNmUtNDE4NS1hMmM1LTdkYjUyMmUwZmYwZiJ9): The dashboards created in PowerBI have been exported and are showcased via GitHub Pages. Visit the Deployed Dashboard for an interactive view. You can also view the dashboards on PowerBI. You can switch between the 2 dashboards created in the bottom right.
 - You can connect to the database yourself and run the queries in the SQL folder yourself by connecting to the database.
