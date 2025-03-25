@@ -4,10 +4,8 @@ Welcome to my repository for the Optimizing Online Sports Retail Revenue  projec
 
 ## How to Use This Repository
 - [**Github Pages**](https://ajaanek.github.io/Online-Retail-Sales-Analysis/): The complete project - including both the Kaggle Notebook and the interactive PowerBI Dashboards, is available in the deployed Github Page
-- [**Kaggle Notebook**](https://www.kaggle.com/code/ajaanekanagasabai/online-retail-sales-analysis): The project’s complete data analysis, including Python code for data cleaning and transformation, is available in the Kaggle Notebook (file provided in the repository).
-- **Tableau Visualizations**: The dashboards created in Tableau have been exported and are showcased via GitHub Pages. Visit the Deployed Dashboard for an interactive view. You can also view the dashboards on Tableau.
-  - [Tableau Sales Dashboard](https://public.tableau.com/app/profile/ajaane.kanagasabai/viz/OnlineRetailSalesAnalysis_17332491897690/SalesDashboard)
-  - [Tableau Sales Analysis](https://public.tableau.com/app/profile/ajaane.kanagasabai/viz/OnlineRetailSalesAnalysis_17332491897690/SalesAnalysis?publish=yes)
+- [**Kaggle Notebook**](https://www.kaggle.com/code/ajaanekanagasabai/sports-retail): The project’s complete data analysis, including Python code for data cleaning and transformation, is available in the Kaggle Notebook (file provided in the repository).
+- [**PowerBI**](https://app.powerbi.com/view?r=eyJrIjoiYTkzN2U3ZWItNmM2Yi00ZjVhLTg4YWEtZTNiMDEzODg3YWY1IiwidCI6IjY0ZDEyMDc0LTcyNmUtNDE4NS1hMmM1LTdkYjUyMmUwZmYwZiJ9): The dashboards created in PowerBI have been exported and are showcased via GitHub Pages. Visit the Deployed Dashboard for an interactive view. You can also view the dashboards on PowerBI.
 
 ## Project Overview
 This repository focuses on optimizing online sports retail revenue by analyzing product details, pricing, discounts, reviews, ratings, and website traffic. We joined multiple tables in SQL Server, cleaned and standardized the data, and built Power BI dashboards to uncover patterns and actionable insights.
