@@ -1,11 +1,26 @@
-# Optimizing Online Sports Retail Revenue
+# Sports Retail Revenue Analysis and Optimization
 
-Welcome to my repository for the Optimizing Online Sports Retail Revenue  project. This project demonstrates how to combine multiple data sources (Brands, Finance, Product Info, Reviews, and Traffic) into a unified dataset, perform data cleaning and exploratory analysis in SQL, and build interactive dashboards in Power BI to derive business insights. The project uses a dataset from Kaggle, which contains data scraped from an online sports retail store like product name, description, brand, listing price, sale price, rating, and number of reviews.
+Welcome to my repository for the Optimizing Online Sports Retail Revenue  project. This project demonstrates how to combine multiple data sources (Brands, Finance, Product Info, Reviews, and Traffic) into a unified dataset, perform data cleaning and exploratory analysis in SQL, and build interactive dashboards in PowerBI to derive business insights. The project uses a dataset from Kaggle, which contains data scraped from an online sports retail store like product name, description, brand, listing price, sale price, rating, and number of reviews.
 
 ## How to Use This Repository
 - [**Github Pages**](https://ajaanek.github.io/Online-Retail-Sales-Analysis/): The complete project - including both the Kaggle Notebook and the interactive PowerBI Dashboards, is available in the deployed Github Page
-- [**Kaggle Notebook**](https://www.kaggle.com/code/ajaanekanagasabai/sports-retail): The project’s complete data analysis, including Python code for data cleaning and transformation, is available in the Kaggle Notebook (file provided in the repository).
-- [**PowerBI**](https://app.powerbi.com/view?r=eyJrIjoiYTkzN2U3ZWItNmM2Yi00ZjVhLTg4YWEtZTNiMDEzODg3YWY1IiwidCI6IjY0ZDEyMDc0LTcyNmUtNDE4NS1hMmM1LTdkYjUyMmUwZmYwZiJ9): The dashboards created in PowerBI have been exported and are showcased via GitHub Pages. Visit the Deployed Dashboard for an interactive view. You can also view the dashboards on PowerBI.
+- [**Kaggle Notebook**](https://www.kaggle.com/code/ajaanekanagasabai/sports-retail): Explore the complete data analysis and Python code in the Kaggle Notebook (ipynb also file provided in the repository).
+- [**PowerBI**](https://app.powerbi.com/view?r=eyJrIjoiYTkzN2U3ZWItNmM2Yi00ZjVhLTg4YWEtZTNiMDEzODg3YWY1IiwidCI6IjY0ZDEyMDc0LTcyNmUtNDE4NS1hMmM1LTdkYjUyMmUwZmYwZiJ9): The dashboards created in PowerBI have been exported and are showcased via GitHub Pages. Visit the Deployed Dashboard for an interactive view. You can also view the dashboards on PowerBI. You can switch between the 2 dashboards created in the bottom right.
+- You can connect to the database yourself and run the queries in the SQL folder yourself by connecting to the database.
+
+  ## How to Connect to the Database
+You can connect to the Azure SQL database using the following details:
+
+- **Server:** `tcp:onlinesportsretail.database.windows.net,1433`
+- **Database:** `Sports Retail Revenue`
+- **Username:** `demo_user`
+- **Password:** `ZsTBAjAD3(h1I`
+- **Authentication:** SQL Server Authentication
+
+### How to Connect:
+1. Open Azure Data Studio or SSMS.
+2. Use the connection details above.
+3. Run the sample queries provided in the `/SQL` folder.
 
 ## Project Overview
 This repository focuses on optimizing online sports retail revenue by analyzing product details, pricing, discounts, reviews, ratings, and website traffic. We joined multiple tables in SQL Server, cleaned and standardized the data, and built Power BI dashboards to uncover patterns and actionable insights.
@@ -39,7 +54,7 @@ The analysis uses the Optimizing Online Sports Retail Revenue Dataset from [Kagg
 - Percentile Calculations (PERCENTILE_CONT) for price points.
 - Correlation Coefficient procedure CalculateCorrelation to find relationships (e.g., revenue vs. reviews).
 - Gender Column to classify products as Men’s, Women’s, or Uncategorized.
-- Identifying Footwear items to compare footwear vs. clothing median revenue.
+- Identifying footwear items to compare footwear vs. clothing median revenue.
 
 
 **Key Insights & Analysis in SQL**
@@ -86,9 +101,17 @@ After preprocessing the data in SQL, I exported the cleaned dataset and built 2 
 
 
 ## Technical Skills Demonstrated
-- **Data Cleaning & Transformation**: Efficiently managed and preprocessed data in SQL.
+- **Data Cleaning & Transformation**: Efficiently managed and preprocessed data in SQL using SSMS.
 - **PowerBI**: Built dynamic dashboards with interactive visualizations, including bar charts, scatter plots, and bubble charts.
+- **Azure SQL Database**: Set up and managed a cloud-hosted Azure SQL database, importing data from SSMS via Azure Data Studio.
 - **Analytical Thinking**: Derived actionable insights from the data, providing a comprehensive view of sales performance and customer behavior.
 
 ## Conclusion
-This project exemplifies a data-driven approach to solving real-world business challenges in online retail. By integrating Python for data cleaning and querying with advanced Tableau visualizations, I have derived actionable insights to optimize sales strategies, enhance customer segmentation, and improve inventory management.
+This project demonstrates the value of combining SQL-based data analysis with interactive Power BI dashboards to uncover actionable insights in online retail. The analysis highlights key areas for improvement, such as optimizing Nike's product mix, refining Adidas’ pricing strategy, and enhancing product categorization to increase revenue efficiency.
+
+Future improvements could include:
+- Expanding the analysis to seasonal trends and customer segmentation.
+- Incorporating real-time data to enable dynamic, real-world decision-making.
+- Exploring sentiment analysis on product reviews to improve product development.
+  
+Overall, this project showcases the power of structured data analysis and visualization in driving business growth and strategic decision-making.
